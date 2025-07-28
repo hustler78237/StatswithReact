@@ -6,6 +6,99 @@ function Front() {
     function handleFormat(value) {
         setFormat(value);
     }
+
+
+    // GET Data
+    // fetch('https://api.cricapi.com/v1/players_info?apikey=74d96dad-e1ba-4a9b-9617-65c93e5b4651&id=b160a781-ee69-42df-9814-a72af153be5b')
+    // .then(response => response.json())
+    // .then(data => console.log(data))
+    // .catch(error => console.error('Error:',error));
+
+    // for player serach api
+    const url1 = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search?plrN=Tucker';
+    const options1 = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'c5bc475584msh67dfed05e113164p1ff89bjsn09c5c4d106e3',
+            'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+        }
+    };
+
+    async function Player() {
+
+        try {
+            const response = await fetch(url1, options1);
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // this is for bowling stats
+
+    const url = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/8733/bowling';
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'c5bc475584msh67dfed05e113164p1ff89bjsn09c5c4d106e3',
+            'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+        }
+    };
+    async function bowling() {
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    // bowling
+
+    // this is for batting stats
+    const url2 = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/8733/batting';
+    const options2 = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'c5bc475584msh67dfed05e113164p1ff89bjsn09c5c4d106e3',
+            'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+        }
+    };
+
+    async function batting() {
+
+        try {
+            const response = await fetch(url2, options2);
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    // batting();
+
+    // this api endpoint for image of player 
+
+    const url3 = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/6635';
+    const options3 = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'c5bc475584msh67dfed05e113164p1ff89bjsn09c5c4d106e3',
+            'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+        }
+    };
+    async function img() {
+        try {
+            const response = await fetch(url3, options3);
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    // img();
+
     return (
         <div className="flex flex-col px-4">
             {/* Search Players */}
