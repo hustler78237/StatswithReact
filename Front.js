@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Front() {
-    // this function is for select format
+    // this section is for hooks
+    
     const [format, setFormat] = useState('Select Format');
+    const [imageurl , setImageurl] = useState("");
+
+// this function is for select format
     function handleFormat(value) {
         setFormat(value);
     }
@@ -79,7 +83,8 @@ function Front() {
     // batting();
 
     // this api endpoint for image of player 
-
+   useEffect(()=>{
+    const fetchimage = async() =>{
     const url3 = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/6635';
     const options3 = {
         method: 'GET',
@@ -88,16 +93,22 @@ function Front() {
             'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
         }
     };
-    async function img() {
+   
         try {
             const response = await fetch(url3, options3);
             const result = await response.json();
-            console.log(result);
+            console.log(result.image);
+            setImageurl(result.image);
+
         } catch (error) {
             console.error(error);
         }
     }
-    // img();
+    // IMG();
+    // fetchimage();
+   },[])
+
+    // IMG();
 
     return (
         <div className="flex flex-col px-4">
@@ -121,8 +132,8 @@ function Front() {
                 <div className="max-w-xs w-full bg-white rounded-lg shadow-lg overflow-hidden">
                     <img
                         className="w-full h-48 object-cover"
-                        src="https://via.placeholder.com/300x200"
-                        alt="Card Image"
+                        src={imageurl}
+                        alt="player image"
                     />
                     <div className="p-4">
                         <h2 className="text-xl font-semibold mb-2">Player1</h2>
